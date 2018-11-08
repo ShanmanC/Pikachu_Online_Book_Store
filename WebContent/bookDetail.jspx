@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="StyleSheet" href="res/mc_book_details.css" type="text/css"
+	title="cse4413" media="screen, print" />
+<title>Book Details</title>
+</head>
+<body>
+	<FORM action='CheckBookDetails' method='Get'>
+		<jsp:include page="/header.jspx" /><!-- include the header -->
+
+		<div>
+			<table class="detailInfo">
+				<tr>
+					<td><img
+						src="${pageContext.request.contextPath}/${book_reviewed.artwork_url}"
+						class="artwork" width="200" height="200"></img></td>
+					<td class="bookDetail">Book Title: ${book_reviewed.title}<br />
+						<br /> Book Id: ${book_reviewed.bid} <br /> <br /> Category:
+						${book_reviewed.category}<br /> <br /> Price: <span
+						class="price"><f:formatNumber type="currency">${book_reviewed.price}</f:formatNumber></span><br />
+						<br /> Quantity: <input type="number" id="quantity"
+						name="quantity" value="1" min="1" max="100" />
+						<button type="submit" name="addToCart" id="addToCart" value="true">Add
+							To Cart</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<br />
+
+		
+
+		<div class="review_block">
+			<h3 class="media-heading"> -- Customer Reviews -- </h3>
+			<c:if test="${empty sessionScope['reviews']}">
+				<p>Woops! This Book doesn't have any comment yet. T_T</p>
+			</c:if>
+			<c:forEach items="${sessionScope['reviews']}" var="element">
+				<table class="all_reviews">
+					<tr>
+						<td>User ID: ${element.uid}</td>
+						<td>Rating: ${element.rating}</td>
+					</tr>
+					<tr class="comment_detail">
+						<td>Comment: ${element.content}</td>
+					</tr>
+				</table>
+				<br />
+			</c:forEach>
+		</div>
+
+		<div class="comment_write_block">
+			<h3> -- Write A Review -- </h3>
+			<c:choose>
+				<c:when test="${no_purchase eq 'true'}">
+					<font color='red'>* You Cannot Add Review If You Did Not
+						Purchase This Book.</font>
+				</c:when>
+			</c:choose>
+			<table>
+
+				<tr>
+					<td>
+						<div class="rating">
+							<input type="radio" id="star5" name="rating" value="5"
+								checked='checked' /> <label for="star5"> 5 stars </label> <input
+								type="radio" id="star4" name="rating" value="4" /> <label
+								for="star4"> 4 stars </label> <input type="radio" id="star3"
+								name="rating" value="3" /> <label for="star3"> 3 stars
+							</label> <input type="radio" id="star2" name="rating" value="2" /> <label
+								for="star2"> 2 stars </label> <input type="radio" id="star1"
+								name="rating" value="1" /> <label for="star1"> 1 star </label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+
+
+					<td>
+						<div class="reviewBox">
+							<input name="customer_review" id="customer_review" placeholder="please write a review..."></input>
+							<br />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><button id="submit_review" name="submit_review"
+							type="submit" class="btn btn-primary" value="true">Submit</button></td>
+				</tr>
+
+			</table>
+		</div>
+	</FORM>
+</body>
+	</html>
+</jsp:root>

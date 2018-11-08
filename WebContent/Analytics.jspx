@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Analytics</title>
+</head>
+<body>
+<FORM action="Analytics" method="GET">
+<h2>Welcome, Dear Administrator.</h2>
+<table>
+	<tr><td>Report Book Sold History in Year: 	
+		<select id="year" name="year">
+								<option value= "2017" >2017</option> 	
+								<option value= "2018" >2018</option> 		
+		</select> Month: 			
+		<select id="month" name="month">
+								<option value= "01" >01</option> 
+								<option value= "02" >02</option>
+								<option value= "03" >03</option>
+								<option value= "04" >04</option>
+								<option value= "05" >05</option>
+								<option value= "06" >06</option>
+								<option value= "07" >07</option>
+								<option value= "08" >08</option>
+								<option value= "09" >09</option>
+								<option value= "10" >10</option>
+								<option value= "11" >11</option>
+								<option value= "12" >12</option>			
+		</select>
+		</td>
+		<td><button type="submit" value="true" name="book_report" id="book_report">Report</button></td>
+		</tr>
+	<tr><td>Report Most Popular Books - Top 3: </td>
+		<td><button type="submit" value="true" name="top_report" id="top_report">Report</button></td>
+	</tr>
+	<tr><td>
+		User Buying Statistics: </td><td><button type="submit" value="true" name="statistics_report" id="statistics_report">Report</button>
+	</td></tr>
+	<tr><td><button id='go_to_logout' name='go_to_logout' value='true' type='submit'>Sign out</button></td></tr>
+</table>
+
+
+
+<c:choose>
+<c:when  test="${table_type eq 'book_report'}">
+	<table>
+		<tr><td>BID</td><td>SOLD QUANTITY</td></tr>
+		<c:forEach items="${book_report_result}" var="element">
+			<tr><td>${element.key}</td><td>${element.value}</td></tr>
+		</c:forEach>
+	</table>
+
+</c:when>
+<c:when  test="${table_type eq 'top_report'}">
+	The top 3 books are:<br />
+	<table>
+		<tr><td>RANK</td><td>BID</td><td>SOLD QUANTITY</td></tr>
+		<c:forEach items="${top_3}" var="element">
+			<tr><td>${element.key}</td><td>${element.value.bid}</td><td>${element.value.quantity}</td></tr>
+		</c:forEach>
+	</table>
+
+</c:when>
+<c:when  test="${table_type eq 'statistics_report'}">
+	<table>
+		<tr><td>UID</td><td>SPENT</td><td>ZIP</td></tr>
+		<c:forEach items="${statistics_result}" var="element">
+			<tr><td>${element.getUid()}</td><td>${element.getSpent()}</td><td>${element.getZip()}</td></tr>
+		</c:forEach>
+	</table>
+</c:when>
+
+</c:choose>
+
+</FORM>
+</body>
+</html>
+</jsp:root>

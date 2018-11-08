@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>User Login</title>
+<link rel="StyleSheet" href="res/mc_login.css" type="text/css"
+	title="cse4413" media="screen, print" />
+<script type="text/javascript" src="js/login.js">
+	;
+</script>
+</head>
+<body>
+	<FORM action="RegisterAndLogin" method="GET"
+		onsubmit="return validate()">
+
+		<jsp:include page="/header.jspx" /><!-- include the header -->
+
+		<div class="login_section">
+			<c:choose>
+				<c:when test="${login_error eq 'true'}">
+					<font color='red'>* Wrong User ID or Password!</font>
+				</c:when>
+			</c:choose>
+			<table>
+				<tr>
+					<td class="userid_section">Username</td>
+				</tr>
+				<tr>
+					<td><input id='login_userid' name='login_userid'
+						placeholder="Type your username" /></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td class="password_section">Password</td>
+				</tr>
+				<tr>
+					<td><input id='login_password' name='login_password'
+						type='password' placeholder="Type your password" /></td>
+				</tr>
+				<tr>
+					<td class="forget_password"><button name='forget_password_button' id='forget_password_button'
+							type='submit' value='true'>Forgot password</button></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><button id='login_button' name='login_button'
+							type='submit' value='true' style="width: 400px; height: 40px;">Sign
+							in</button></td>
+				</tr>
+
+			</table>
+			
+			<table>
+				<tr>
+					<td class="register_and_forget"><a href="Register.jspx"><button
+								id='login_register' name='login_register' type='submit'
+								value="true">Or Register</button></a>
+						</td>
+
+				</tr>
+
+			</table>
+
+
+
+
+		</div>
+
+
+	</FORM>
+</body>
+	</html>
+</jsp:root>

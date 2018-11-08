@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<div>
+		<table class="header">
+		<tr>
+			<td><LEGEND><img src="${pageContext.request.contextPath}/${sessionScope['applicationIcon']}" class="applicationIcon"></img> ${applicationName}</LEGEND></td>
+			
+			<td class="header"><button id='go_to_cart' name='go_to_cart' type='submit' value='true'>Shopping-Cart</button></td>
+			<td class="header"><button id='go_to_home' name='go_to_home' type='submit' value='true'>Return Home</button></td>
+			<c:choose>
+				<c:when test="${not empty user}">
+					<td class="header"><button id='go_to_logout' name='go_to_logout' value='true' type='submit'>Sign out</button></td>
+					<td class="header"><input class="login_title" value="Hello! ${user.uid}"
+					readOnly="true"></input></td>
+				</c:when>
+				<c:otherwise>
+					<td class="header"><button id='go_to_login' name='go_to_login' value='true' type='submit'>Sign in</button></td>
+					<td class="header"><input class="login_title_hidden" value="Hello! ${user.uid}"
+					readOnly="true"></input></td>
+				</c:otherwise>
+			</c:choose>
+		</tr>
+		</table>
+</div>
+
+
+</html>
+</jsp:root>

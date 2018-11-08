@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="StyleSheet" href="res/mc_order_detail.css" type="text/css"
+	title="cse4413" media="screen, print" />
+<title>${applicationName}</title>
+</head>
+<body>
+	<FORM action="Payment" method="GET">
+
+		<jsp:include page="/header.jspx" /><!-- include the header -->
+		<fieldset>
+			<c:choose>
+				<c:when test="${denied eq 'true'}">
+
+					<div class="position">
+						<div class="content">
+							<table class="failed">
+								<tr>
+									<td class="card_failed">Credit Card Authorization Failed</td>
+								</tr>
+
+							</table>
+						</div>
+					</div>
+					<div>
+						<button class="goToCart" id='go_to_cart' name='go_to_cart'
+							type='submit' value='true'>Back To Shopping Cart</button>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="position">
+						<div class="content">
+							<table class="receipt">
+								<tr>
+									<td class="content_title">Order Successfully Completed</td>
+								</tr>
+								<tr>
+									<td class="content_subtitle" style="vertical-align: top;">Thanks
+										for Choosing Pikachu Online Book Store</td>
+								</tr>
+								<tr>
+									<td class="order_summary">Order Summary</td>
+								</tr>
+							</table>
+							<table>
+								<thead>
+									<tr>
+										<th>BID</th>
+										<th class="used_to_space"></th>
+										<th>Book Title</th>
+										<th class="used_to_space"></th>
+										<th>Quantity</th>
+										<th class="used_to_space"></th>
+										<th>Amount</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${sessionScope['poitems']}" var="element">
+										<tr>
+											<td class="content_detail">${element.key.bid}</td>
+											<td class="used_to_space"></td>
+											<td class="content_detail">${element.value}</td>
+											<td class="used_to_space"></td>
+											<td class="content_detail" align="right">${element.key.quantity}</td>
+											<td class="used_to_space"></td>
+											<td class="content_detail"><f:formatNumber
+													type="currency">${element.key.price * element.key.quantity}</f:formatNumber></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+
+							<table class="receipt_details">
+
+								<tr>
+									<td class="content_detail">Your Order ID:</td>
+									<td class="used_to_space"></td>
+									<td class="content_detail">#${sessionScope['order_id']}</td>
+								</tr>
+								<tr>
+									<td class="content_detail">Receiver:</td>
+									<td class="used_to_space"></td>
+									<td class="content_detail">${sessionScope['receiver']}</td>
+								</tr>
+								<tr>
+									<td style="vertical-align: top;" class="content_detail">Ship
+										to Address:</td>
+									<td class="used_to_space"></td>
+									<td class="content_detail">${sessionScope['shipping_address']}</td>
+								</tr>
+
+								<tr>
+									<td class="content_detail">Payment Type:</td>
+									<td class="used_to_space"></td>
+									<td class="content_detail">${sessionScope['cardType']}</td>
+								</tr>
+								<tr>
+									<td class="content_detail">Card Number:</td>
+									<td class="used_to_space"></td>
+									<td class="content_detail">${sessionScope['cardNumber']}</td>
+								</tr>
+								<tr>
+									<td class="content_detail">Expires on:</td>
+									<td class="used_to_space"></td>
+									<td class="content_detail">${sessionScope['expireM']}/${sessionScope['expireY']}</td>
+								</tr>
+
+								<tr>
+									<td class="content_detail">Merchandise Subtotal:</td>
+									<td class="used_to_space"></td>
+									<td class="content_detail"><f:formatNumber type="currency">${sessionScope['order_total_price']}</f:formatNumber></td>
+								</tr>
+								<tr>
+									<td class="content_detail">Tax:</td>
+									<td class="used_to_space"></td>
+									<td class="content_detail"><f:formatNumber type="currency">${sessionScope['order_total_price'] * 0.13}</f:formatNumber></td>
+								</tr>
+								<tr>
+									<td class="content_detail">Order Total:</td>
+									<td class="used_to_space"></td>
+									<td class="content_detail"><f:formatNumber type="currency">${sessionScope['order_total_price'] * 1.13}</f:formatNumber></td>
+								</tr>
+
+							</table>
+
+						</div>
+
+
+					</div>
+
+					<div class="go_home_button">
+						<button class="go_home" id='go_to_home' name='go_to_home'
+							type='submit' value='true' style="width: 400px; height: 40px;">Keep
+							Shopping</button>
+					</div>
+
+
+					<div class="contact_info">
+						For any questions, please contact customer service at
+						1-877-PIKACHU or contact us via email at <a href="">customercare@pikachu.com</a>.
+
+						<br />We appreciate your business! <br />
+					</div>
+
+
+				</c:otherwise>
+			</c:choose>
+
+
+
+		</fieldset>
+	</FORM>
+</body>
+	</html>
+</jsp:root>

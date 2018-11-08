@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+fieldset {
+	border: 0;
+	text-align: center;
+}
+
+table.receipt {
+	margin-top: 30px;
+}
+
+table.failed {
+	margin-top: 300px;
+}
+
+table.header {
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+td.header {
+	vertical-align: bottom;
+}
+
+img.applicationIcon {
+	width: 50px;
+	height: 50px;
+}
+
+body {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
+
+input.login_title {
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	margin: 2px 8px;
+	text-decoration: underline;
+	padding: 3px;
+	font-size: 14px;
+	font-family: Lucida Grande, "Geneva";
+}
+
+input.login_title_hidden {
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	margin: 2px 8px;
+	text-decoration: underline;
+	padding: 3px;
+	font-size: 14px;
+	font-family: Lucida Grande, "Geneva";
+	color: white;
+}
+
+legend {
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	font-style: italic;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+button {
+	font-size: 15px;
+	border: 0.5px solid black;
+	background-color: white;
+	/*border-radius: 0px;*/
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+button:hover {
+	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0
+		rgba(0, 0, 0, 0.1);
+}
+
+#go_to_cart, #go_to_home, #go_to_login, #go_to_logout {
+	margin: 2px 8px;
+	border: 0;
+}
+
+#go_to_cart:hover, #go_to_home:hover, #go_to_login:hover, #go_to_logout:hover
+	{
+	border: 0.5px solid black;
+	box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+	-webkit-transition-duration: 0.1s; /* Safari */
+	transition-duration: 0.1s;
+}
+
+div.position {
+	text-align: center;
+display: inline-block;
+}
+
+div.content {
+	display: inline-block;
+	text-align: left;
+}
+
+td.card_failed {
+	font-size: 30px;
+	font-weight: bold;
+	color: red;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+td.content_title {
+	font-size: 30px;
+	font-weight: bold;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+td.order_summary {
+	font-size: 25px;
+	font-weight: bold;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+td.content_subtitle {
+	height: 35px;
+	font-size: 13px;
+	font-style: italic;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+td.content_detail {
+	height: 25px;
+	font-size: 15px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+td.used_to_space, th.used_to_space {
+	width: 40px;
+}
+
+thead {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+div.contact_info {
+	font-size: 12px;
+	margin-top: 70px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+div.go_home_button {
+	margin-top: 50px;
+}
+
+button.goToCart {
+	font-size: 13px;
+	color: #7c7c7d;
+}
+
+button.goToCart:hover {
+	color: #636263;
+	font-size: 15px;
+}
+
+button.go_home {
+	padding: 10px 10px;
+	background-color: #f5c478;
+	margin-top: 20px;
+	border: 0.5px solid black;
+	font-size: 15px;
+}
+
+table.receipt_details {
+	margin-top: 10px;
+	vertical-align: middle;
+}
+
+button.search_detail {
+	border: 0px;
+}

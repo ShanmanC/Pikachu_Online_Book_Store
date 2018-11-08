@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>URL Error</title>
+</head>
+<body>
+<FORM action="Start" method="GET">
+<h2>Looking for something? <br />
+We're sorry. The Web address you entered is not a functioning page on our site. </h2>
+<button id='go_to_home' name='go_to_home' type='submit' value='true'>Return Home</button>
+
+</FORM>
+</body>
+</html>
+</jsp:root>

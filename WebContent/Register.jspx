@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Register</title>
+<link rel="StyleSheet" href="res/mc_register.css" type="text/css"
+	title="cse4413" media="screen, print" />
+<script type="text/javascript" src="js/Register.js">
+	;
+</script>
+</head>
+<body>
+	<form action="RegisterAndLogin" method="GET"><jsp:include page="/header.jspx" /><!-- include the header --></form>
+	<form action="RegisterAndLogin" method="GET" name=""
+		onsubmit="return validate_register()">
+		
+		<table>
+			<tr>
+
+				<td><input class="register_title" value="Create an account"
+					readOnly="true"></input></td>
+				<td class="space_for_form"></td>
+				<td><input class="shipping_info" readOnly="true"
+					value="Fillout the following form for a shipping address"></input></td>
+			</tr>
+
+		</table>
+
+		<c:choose>
+			<c:when test="${user_exist eq 'true'}">
+				<tr>
+					<td><font color='red'>${errorMessage}</font></td>
+				</tr>
+			</c:when>
+		</c:choose>
+
+		<table>
+			<tr>
+				<td for="register_username" class="register_section">Username</td>
+				<td class="space_for_form"></td>
+				<td for="sfname" class="register_section">First Name</td>
+				<td for="slname" class="register_section">Last Name</td>
+			</tr>
+			<tr>
+				<td><input type="text" placeholder="Type your username"
+					id="register_username" name="register_username"
+					value="${register_username}" /></td>
+				<td class="space_for_form"></td>
+				<td><input type="text" id="sfname" name="sfname"
+					value="${sfname}" placeholder="Type your First Name" /></td>
+				<td><input type="text" id="slname" name="slname"
+					value="${slname}" placeholder="Type your Last Name" /></td>
+			</tr>
+
+		</table>
+
+		<table>
+			<tr>
+				<td for="register_email" class="register_section">Email</td>
+				<td class="space_for_form"></td>
+				<td for="sphone" class="register_section">Phone Number</td>
+			</tr>
+			<tr>
+				<td><input type="text" placeholder="Type your E-mail"
+					id="register_email" name="register_email" value="${register_email}" /></td>
+				<td class="space_for_form"></td>
+				<td><input type="text"
+					placeholder="Type your 10 digits phone number" id="sphone"
+					name="sphone" value="${sphone}" /></td>
+			</tr>
+
+		</table>
+
+		<table>
+			<tr>
+				<td for="register_password" class="register_section">Password</td>
+				<td class="space_for_form"></td>
+				<td for="sadrs" class="register_section">Street Name</td>
+				<td for="szip" class="register_section">Zip Code</td>
+			</tr>
+			<tr>
+				<td><input id="register_password"
+					placeholder="Type your password at least 6 characters"
+					name="register_password" type="password" /></td>
+				<td class="space_for_form"></td>
+				<td><input rows="2" id="sadrs" name="sadrs" value="${sadrs}"
+					placeholder="Please enter your address" /></td>
+				<td><input type="text" id="szip" name="szip" value="${szip}"
+					placeholder="6 characters" /></td>
+			</tr>
+
+		</table>
+
+
+		<table>
+			<tr>
+				<td for="register_passwordcfm" class="register_section">Re-enter
+					password</td>
+				<td class="space_for_form"></td>
+				<td for="sstate" class="register_section">Province/States</td>
+				<td class="space_for_form"></td>
+				<td for="scountry" class="register_section">Country</td>
+			</tr>
+			<tr>
+				<td><input id="register_passwordcfm"
+					placeholder="Type your password again" name="register_passwordcfm"
+					type="password" /></td>
+				<td class="space_for_form"></td>
+				<td for="sstate"><div class="select-style"><select id="sstate"
+					name="sstate" >
+						<option value="0">Select Province/State</option>
+						<option value="AB">AB</option>
+						<option value="BC">BC</option>
+						<option value="ON">ON</option>
+						<option value="MB">MB</option>
+						<option value="NB">NB</option>
+						<option value="NL">NL</option>
+						<option value="NS">NS</option>
+						<option value="NT">NT</option>
+						<option value="NU">NU</option>
+						<option value="ON">ON</option>
+						<option value="PE">PE</option>
+						<option value="QC">QC</option>
+						<option value="SK">SK</option>
+						<option value="YT">YT</option>
+				</select></div></td>
+				<td class="space_for_form"></td>
+				<td for="scountry">
+				 <div class="select-style">
+				<select id="scountry"
+					name="scountry" onchange="sgetState()">
+						<option value="0">Select country</option>
+						<option value="Canada">Canada</option>
+				</select></div></td>
+			</tr>
+
+		</table>
+		<table>
+			<tr>
+				<td><button id="register_button" action='submit' name='register_button'
+						label='register_button' value='true'
+						style="width: 400px; height: 40px;">Register</button></td>
+			</tr>
+		</table>
+
+
+	</form>
+
+	<br />
+	<form action="RegisterAndLogin" method="GET" name="">
+		<table class="login">
+			<tr>
+				<td><span id="question_of_account">Already have an account?</span>
+					<button id='go_to_login' class="go_to_log_in" name='go_to_login' value='true'
+						type='submit'>Sign in</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+
+
+
+</body>
+	</html>
+</jsp:root>

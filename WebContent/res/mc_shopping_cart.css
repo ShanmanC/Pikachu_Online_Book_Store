@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+body {
+    position: absolute;  
+    width:100%;  
+    height:100%;
+    margin:0px;  
+    padding:0px;  
+    text-align: center;
+ }
+
+legend {
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	font-style: italic;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+form.homepage {
+	width: auto;
+	margin: auto;
+	font-size: 12px;
+	border-radius: 10px;
+	background-color: #f2f0f3;
+	padding: 8px;
+}
+
+
+
+table {
+	margin-left: auto; 
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+table.shoppingCartInfo {
+	width: 1000px;  
+	height: 150px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+img.applicationIcon {
+	width: 50px;
+	height: 50px;
+}
+
+td.header {
+	vertical-align: bottom;
+	
+}
+
+
+input.login_title {
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	margin: 2px 8px;
+	text-decoration: underline;
+	padding: 3px;
+	font-size: 14px;
+	font-family: Lucida Grande, "Geneva";
+	
+}
+
+input.login_title_hidden {
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	margin: 2px 8px;
+	text-decoration: underline;
+	padding: 3px;
+	font-size: 14px;
+	font-family: Lucida Grande, "Geneva";
+	color: white;
+}
+
+
+
+table.header {
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+#go_to_cart, #go_to_home, #go_to_login, #go_to_logout {
+	margin: 2px 8px;
+	border: 0;
+}
+
+#go_to_cart:hover, #go_to_home:hover, #go_to_login:hover, #go_to_logout:hover {
+	border: 0.5px solid black;
+	box-shadow: 0 0px 0px 0 rgba(0,0,0,0),0 0px 0px 0 rgba(0,0,0,0);
+	 -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+}
+
+#category {
+	font-size: 20px;
+}
+
+button {
+	font-size: 15px;
+	border: 0.5px solid black;
+	background-color: white;
+	/*border-radius: 0px;*/
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	 -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1),0 5px 5px 0 rgba(0,0,0,0.1);
+}
+
+button.delete {
+	background-color: #ff0208;
+	color: white;
+	border-radius: 3.5px;
+}
+
+button.update {
+	background-color: #f5c478;
+	color: white;
+	border-radius: 3.5px;
+}
+
+#keep_shopping, #check_out {
+	border-radius: 3.5px;
+	background-color: #f5c478;
+}
+
+#total {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}

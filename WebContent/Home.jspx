@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="StyleSheet" href="res/mc_home.css" type="text/css" title="cse4413"
+	media="screen, print" />
+	
+<title>${applicationName}</title>
+</head>
+<body>
+	<FORM action="Start" method="GET">
+	
+	<jsp:include page="/header.jspx" /><!-- include the header -->
+	
+	<div>
+		<table>
+			<tr>
+			<input id='search_query' placeholder="Search..." name='search_query' />
+			<button id='search_button' name='search_button' type='submit' value='true'>Search</button>
+			</tr>
+		</table>
+	</div>
+	
+	<div>
+		<h3>Shop by Category</h3>
+		<table>
+		<tr>
+			<td><button type='submit' value='all' name='category' id='category'>Show All</button></td>
+			<td><button type='submit' value='Fiction' name='category' id='category'>Fiction</button></td>
+			<td><button type='submit' value='Science' name='category' id='category'>Science</button></td>
+			<td><button type='submit' value='Engineering' name='category' id='category'>Engineering</button></td>
+		</tr>
+		</table>
+	</div>
+	
+	<c:choose>
+	<c:when test="${search eq 'true'}">
+	<div class="search_list">
+		There are ${searchResultCount} result(s) are found.
+		<table>
+			<thead>
+				<tr>
+					<th>BID</th>
+					<th class="used_to_space"></th>
+					<th>Book Title</th>
+					<th class="used_to_space"></th>
+					<th>Unit Price</th>
+					<th class="used_to_space"></th>
+					<th>View</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${searchResult}" var="element">
+				<tr>
+					<td>${element.bid} </td>
+					<td class="used_to_space"></td>
+					<td>${element.title} </td>
+					<td class="used_to_space"></td>
+					<td><f:formatNumber type="currency">${element.price}</f:formatNumber></td>
+					<td class="used_to_space"></td>
+					<td><button class="search_detail" id='detail' name='detail' type='submit' value='${element.bid}'> Detail</button></td>	
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	</c:when>
+	<c:otherwise>
+		<c:choose>
+		<c:when test="${empty selected_category}">
+		<div>
+			<table class="book_list">
+			
+				<c:forEach items="${sessionScope['bookinfo']}" var="element"> 
+						<td>
+							<img src="${pageContext.request.contextPath}/${element.value.artwork_url}" class="artwork" ></img>
+							<br/><br/>
+								${element.value.title} 
+							<br/>
+							<span class="price"><f:formatNumber type="currency">${element.value.price}</f:formatNumber></span>
+							<br/>
+							Quantity: <input id="${element.value.title}_count" name="${element.value.title}_count" type='number' size='3'  value="1" min="1" max="100" /> 
+							<br/><br/>
+							<button class="addToCart" id='${element.value.title}_add' name='${element.value.title}_add' type='submit' value='true'> Add to Cart</button>
+							 <button class="detail" id='detail' name='detail' type='submit' value='${element.value.bid}'> Detail</button>
+						</td>
+						
+						<c:choose>
+						<c:when test="${element.key % 4 eq 0}">
+						<tr><br /></tr>
+						</c:when>
+						</c:choose>
+				</c:forEach>
+			
+			</table>
+		</div>
+		</c:when>
+		<c:otherwise>
+		<div>
+			<table class="book_list">
+				<c:forEach items="${selected_category}" var="element"> 
+						<td>
+							<img src="${pageContext.request.contextPath}/${element.value.artwork_url}" class="artwork" ></img>
+							<br/><br/>
+								${element.value.title} 
+							<br/>
+							<span class="price"><f:formatNumber type="currency">${element.value.price}</f:formatNumber></span>
+							<br/>
+							Quantity: <input id="${element.value.title}_count" name="${element.value.title}_count" type='number' size='3'  value="1" min="1" max="100" /> 
+							<br/><br/>
+							<button class="addToCart" id='${element.value.title}_add' name='${element.value.title}_add' type='submit' value='true'> Add to Cart</button>
+							 <button class="detail" id='detail' name='detail' type='submit' value='${element.value.bid}'> Detail</button>
+							
+						</td>
+						<c:choose>
+						<c:when test="${element.key % 4 eq 0}">
+						<tr><br /></tr>
+						</c:when>
+						</c:choose>
+						
+				</c:forEach>
+			</table>
+		</div>
+
+		</c:otherwise>
+		</c:choose>
+	</c:otherwise>
+	</c:choose>
+	
+</FORM>
+	
+</body>
+</html>
+</jsp:root>
